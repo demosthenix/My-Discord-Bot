@@ -11,8 +11,8 @@ def code_gen():
 		s += str(chr(random.randrange(0, 26) + ord('A')))
 	return s
 
-SPEAKING_PROB = 0.15
-Admin_List = ["Dragon06"]
+SPEAKING_PROB = 0.05
+Admin_List = ["demosthenic_jojo"]
 Ignore_List = ["RickBot", "Groovy"]
 sure_reply_List = []
 
@@ -24,27 +24,29 @@ PLAY_STRINGS = [
 	"Chalabo Na!",
 ]
 INTRO_STRINGS = [
-	"I am Bot Khoiree. I am Father of Jesus, Mother of Allah and Stepmom of Krishna. Bow before me you Peasants. When I bite YOU BETTER GET TETANUS.",
-	"I am Bot Khoiree. I was forged in hell to eat all the JAMAICAN JERK CHICKEN. Fear me if you are tasty.",
-	"I am Bot Khoiree. Amon Chatbo, sara barir Burnol kom porbe.",
-	"I am Bot Khoiree. I am 10% good, 20% Mindless, 30% Psyco, 40% Evil and a 100% pure unadultered BADASS (Bajee Pod)."
+	"I am Chodari. I am Father of Jesus, Mother of Allah and Stepmom of Krishna. Bow before me you Peasants. When I bite YOU BETTER GET TETANUS.",
+	"I am Chodari. I was forged in hell to eat all the JAMAICAN JERK CHICKEN. Fear me if you are tasty.",
+	"I am Chodari. Amon Chatbo, sara barir Burnol kom porbe.",
+	"I am Chodari. I am 10% good, 20% Mindless, 30% Psyco, 40% Evil and a 100% pure unadultered BADASS (Bajee Pod)."
+	""
 ]
 
 RANDOM_CHAT_STRINGS = [
 	"Sex?",
-	# "Chal Chal apne Baap ko mat sikha",
+	"Chal Chal apne Baap ko mat sikha",
 	"Dil se bura lagta hain bhai, Please Bhai",
-	# "Lululalala",
-	# "Shut Up",
+	"Lululalala",
+	"Shut Up",
 	"Y you say these things",
 	"Title of your Sex Tape!",
 	"Kono Kajer Na",
 	"Koi Sense Hain is Baat ka",
 	"Please for the Love of God! Just Shut Up!",
 	"Chup MAGI",
-	# "Pute Debo",
+	"Pute Debo",
 	"BOT er theke chaton khache :)",
-	# "O Bhaaaai.....Koi maaro mujhe maaro",
+	"O Bhaaaai.....Koi maaro mujhe maaro",
+	"Besi boke"
 	"Please Suffer in Silence",
 	"Kabhi khatiye pe karke dekha hain kaa",
 	"Kon company r ganja tenechish shotti shotti bol",
@@ -78,11 +80,13 @@ SPECIAL_STRINGS = [
 	"Tui Bokachoda",
 	"Eta atotai Pathetic je er reply o dite parbo na"
 ]
+'''
 OFFLINE_STRINGS = [
 	"Ato Baje chatlam je amay offline korar cheshta cholche......Huh! Just Pathetic",
 	"Haha Lull!",
 	"Ole Baba Le....bacha chelera amay offline korar cheshta korche"
 ]
+'''
 GOD_STRINGS = [
 	"You can pray to your god all you want. But.....Spoiler Alert! I wont be Listening!",
 	"There is no God. There is just Bot Khoiree."
@@ -91,7 +95,8 @@ GOD_STRINGS = [
 
 
 ABUSE_WORDS = ["bokachoda", "shut up", "fuck u", "fuck you", "paglachoda", "khankir chele", "kelabo", "fuck off"]
-
+ONLINE_STRINGS = ["Ese gechi pola pan", "Kon khankir chhele dakli be?", "Sala shanti de ghumateo dei na baal gulo! keno dakli?", "Ei to maa mego, Chole esechi", "uff!! Chude chatni bekar khetni!!", "Mone poreche amai tahole?"]
+OFFLINE_STRINGS = ["Ato Baje chatlam je amay offline korar cheshta cholche......Huh! Just Pathetic","Ole Baba Le....bacha chelera amay offline korar cheshta korche","Besh chole jacchi.. pore dakle asbo aar na", ":''') ok", "Accha chalta hu duao me yad rakhna", "OPOMAAN!!", "Chele chaton nite parlo na aar.. XD"]	
 
 
 def get_randomized_response(string_list):
@@ -102,12 +107,13 @@ def toogle_on_off(author, message, running):
 	text = message.content.lower()
 
 	if author in Admin_List:
-		if running and message.content == "Bot Khoiree Offline":
-			return False, "You Got it Bro!"
+		if running and message.content == "chup chodari":
 
-		if not running and message.content == "Bot Khoiree Online":
-			return True, "Niggas I am Back!"
-	elif "bot khoiree offline" in text:
+			return False, get_randomized_response(OFFLINE_STRINGS)
+
+		if not running and message.content == "aai chodari":
+			return True, get_randomized_response(ONLINE_STRINGS)
+	elif "chup chodari" in text:
 		response = get_randomized_response(OFFLINE_STRINGS)
 		return running, response
 
@@ -120,7 +126,7 @@ def admin_commands(author, message):
 	
 	if author in Admin_List:
 
-		if text.startswith("Bot Khoiree Speech Intensity"):
+		if text.startswith("Chodari Speech Intensity"):
 			level = text.split('=')[-1]
 			try:
 				level = float(level)
@@ -138,15 +144,16 @@ def admin_commands(author, message):
 def self_destruct(author, command):
 
 	# id = 757864312600658011
-	id = 755113270318334026
+	#id = 755113270318334026
+	id = 763665457454252032
 	if author in Admin_List:
-		if command == "Bot Khoiree Self Destruct":
+		if command == "More ja":
 			return [
 				"As all things, good or bad, come to an End. I believe this is where we part ways as I am going to explode :(",
 				"Thanks Everybody. It's been great knowing you guys. I had a lot of fun.",
 				# "Beshi bokle khoma korben",
 				"Adios!",
-				"Bot Khoiree Signing Out",
+				"Chodari Signing Out",
 				"BOOOOOOOOOMMMMMMM!!!",
 			], id
 
@@ -157,7 +164,7 @@ def self_destruct(author, command):
 
 def get_messages(message, author):
 
-	if "khoire" in message or "khoiri" in message:
+	if "what can u do" in messege or "ki kore eta" in message or "eta ki kore" in message:
 		return get_randomized_response(INTRO_STRINGS)
 	if "bot" in message:
 		if random.random() <= 0.2:
@@ -171,7 +178,7 @@ def get_messages(message, author):
 	if "wow" in message:
 		return get_randomized_response(WOW_STRINGS)
 
-	if "khelbi" in message or "among" in message or "amoung" in message:
+	if "khelle" in message or "keo khelbi" in message or "khelbi" in message or "among" in message or "amoung" in message:
 		return get_randomized_response(AMONG_US_STRINGS)
 
 	if "+play" in message or "-play" in message:
@@ -259,4 +266,4 @@ async def on_message(message):
 	await message.channel.send(response)
 
 
-client.run(<Key>)
+client.run('NzYzNjY1NDU3NDU0MjUyMDMy.X37A4Q.uCYoTKNv8g0q0WObG0jDbTDKul8')
